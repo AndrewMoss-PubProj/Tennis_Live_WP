@@ -69,7 +69,7 @@ game_set_score_groups = data.groupby(['Sets_Away_player_0', 'Sets_Away_player_1'
 data['p0_set_diff'] = data['Sets_Away_player_1'] - data['Sets_Away_player_0']
 data['p0_game_diff'] = data['Games_Away_player_1'] - data['Games_Away_player_0']
 game_set_diff_groups = data.groupby(['p0_game_diff', 'p0_set_diff']).mean().sort_values('match_winning_player')['match_winning_player']
-## This is table of probabilities by game and set score
+## This is table of probabilities by game and set score-see p0_win_probs_by_game_set_score.JPG
 game_set_diff_groups = abs(game_set_diff_groups.reset_index().pivot(index='p0_game_diff',columns='p0_set_diff').subtract(2))
 
 

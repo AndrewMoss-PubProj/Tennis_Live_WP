@@ -6,16 +6,16 @@ os.chdir('C:/Users/Andrew Moss/PycharmProjects/Tennis_Live_WP')
 data = pd.read_csv('tennis_data_with_preds.csv').reset_index()
 data = data[data['game_id'] == 1].loc[:, ['index', 'serving_player', 'player_1_points', 'player_2_points',
                                           'player_1_games', 'player_2_games', 'player_1_sets', 'player_2_sets',
-                                          'player_1_WP']]
+                                          'player_1_WP_XGB']]
 
 
 
-
+## Making the dots green when p1 win probability >= .5 and red when it is less
 trace1 = go.Scatter(x=data.index[:2],
-                    y=data.player_1_WP[:2],
+                    y=data.player_1_WP_XGB[:2],
                     mode='lines + markers',
                     marker=dict(
-                    color=((.5 < data.player_1_WP).astype('int')), colorscale=[[0, 'red'], [1, 'green']]
+                    color=((.5 < data.player_1_WP_XGB).astype('int')), colorscale=[[0, 'red'], [1, 'green']]
                     ),
                     line=dict(color='black')
                 )
@@ -23,7 +23,7 @@ trace1 = go.Scatter(x=data.index[:2],
 
 frames = [dict(data=dict(type='scatter',
                            x=data.index[:k+1],
-                           y=data.player_1_WP[:k+1]),
+                           y=data.player_1_WP_XGB[:k+1]),
                traces=[0, 1],
               ) for k in range(1, len(data)-1)]
 

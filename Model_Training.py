@@ -61,10 +61,13 @@ results_kfold_XGB = model_selection.cross_val_score(model_kfold_XGB, inputs, out
 print("Log_Loss: '%.3g'" % (results_kfold_XGB.mean()))
 
 model_kfold_XGB.fit(inputs, outputs)
+
 pickle.dump(model_kfold_XGB, open('C:\\Users\\Andrew Moss\\PycharmProjects\\Tennis_Live_WP\\XGB_live_odds.sav', 'wb'))
+## I trained this model overnight and then my computer shut off so I never got to see the performance stats.
+## of the XGBoost modelWith more time, I would have spent some time comparing the models by cross validation loss or
+## other metrics, including interpretability, before selecting a more complicated model over a simple one
 
 
 
-
-
-
+#logistic regression log loss: -0.489, Brier Score: 0.157895984
+# XGBoost brier score: 0.139039724

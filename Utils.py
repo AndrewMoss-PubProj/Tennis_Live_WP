@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+## For a given dataset that spans a game, this method adds a column with who won the next point
 def point_winner(game):
     for index, row in game.iterrows():
         if index == game.iloc[-1].name:
@@ -16,6 +17,7 @@ def point_winner(game):
                 game.loc[index, 'point_winner'] = 1
     return game
 
+## Gives each game its own ID
 def game_IDs(data):
     for index, row in data.iterrows():
         print(index)
@@ -28,6 +30,7 @@ def game_IDs(data):
             data.loc[index, 'game_id'] = data.loc[index - 1, 'game_id'].copy() + 1
     return data
 
+## For a given dataset that spans a match, this method adds a column with who won the game the row is apart of
 def game_winners(game_groups):
     game_groups['game_winner'] = -1
     for index, row in game_groups.iterrows():
